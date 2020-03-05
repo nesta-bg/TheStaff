@@ -13,6 +13,7 @@ export class CreateEmployeeComponent implements OnInit {
   // BsDatepickerConfig -> go to the definition
   datePickerConfig: Partial<BsDatepickerConfig>;
   dateOfBirth: Date = new Date(2020, 0, 30);
+  previewPhoto = false;
 
   departments: Department[] = [
     { id: 1, name: 'Help Desk' },
@@ -37,4 +38,9 @@ export class CreateEmployeeComponent implements OnInit {
   saveEmployee(employeeForm: NgForm): void {
     console.log(employeeForm.value);
   }
+
+  togglePhotoPreview() {
+    this.previewPhoto = !this.previewPhoto;
+  }
+
 }
