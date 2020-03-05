@@ -69,9 +69,12 @@
                 <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" class="form-control" />
             </div> -->
             <!-- bsDaterangepicker -->
-            <div class="form-group">
-                <label for="dateOfBirth">Date of Birth</label>
-                <input type="text" bsDatepicker id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" class="form-control" />
+            <div class="row">
+                <div class="form-group col-md-4">
+                    <label for="dateOfBirth">Date of Birth</label>
+                    <input type="text" bsDatepicker [bsConfig]="datePickerConfig" placement="right" id="dateOfBirth" 
+                        name="dateOfBirth" [(ngModel)]="dateOfBirth" class="form-control" />
+                </div> 
             </div> 
         </div>
         <div class="panel-footer">
