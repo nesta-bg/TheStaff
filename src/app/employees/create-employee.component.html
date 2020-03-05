@@ -63,6 +63,16 @@
                     </option>
                 </select>
             </div>
+
+            <!-- <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" class="form-control" />
+            </div> -->
+            <!-- bsDaterangepicker -->
+            <div class="form-group">
+                <label for="dateOfBirth">Date of Birth</label>
+                <input type="text" bsDatepicker id="dateOfBirth" name="dateOfBirth" [(ngModel)]="dateOfBirth" class="form-control" />
+            </div> 
         </div>
         <div class="panel-footer">
             <button class="btn btn-primary" type="submit">Save</button>
