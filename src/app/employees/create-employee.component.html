@@ -28,8 +28,9 @@
             <!-- pattern="^[a-zA-Z0-9_.+-]+@(?:(?:[a-zA-Z0-9-]+\.)?[a-zA-Z]+\.)?(gmail)\.com$" -->
             <div class="form-group" [class.has-error]="email.invalid">
                 <label for="email" class="control-label">Email</label>
-                <input id="email" [required]="contactPreference.value=='email'" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" type="text"
-                    class="form-control" name="email" [(ngModel)]="employee.email" #email="ngModel">
+                <input id="email" [required]="contactPreference.value=='email'"
+                    pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$" type="text" class="form-control"
+                    name="email" [(ngModel)]="employee.email" #email="ngModel">
                 <span class="help-block" *ngIf="email.errors?.required">
                     Email is required
                 </span>
@@ -40,8 +41,8 @@
 
             <div class="form-group" [class.has-error]="phoneNumber.invalid">
                 <label for="phoneNumber" class="control-label">Phone Number</label>
-                <input id="phoneNumber" [required]="contactPreference.value=='phone'" type="text" class="form-control" name="phoneNumber"
-                    [(ngModel)]="employee.phoneNumber" #phoneNumber="ngModel">
+                <input id="phoneNumber" [required]="contactPreference.value=='phone'" type="text" class="form-control"
+                    name="phoneNumber" [(ngModel)]="employee.phoneNumber" #phoneNumber="ngModel">
                 <span class="help-block" *ngIf="phoneNumber.errors?.required">
                     Phone Number is Invalid
                 </span>
@@ -71,13 +72,13 @@
                 <label class="control-label">Gender</label>
                 <div class="form-control">
                     <label class="radio-inline">
-                        <input type="radio" required name="gender" value="male" 
-                            [(ngModel)]="employee.gender" #gender="ngModel">
+                        <input type="radio" required name="gender" value="male" [(ngModel)]="employee.gender"
+                            #gender="ngModel">
                         Male
                     </label>
                     <label class="radio-inline">
-                        <input type="radio" required name="gender" value="female" 
-                            [(ngModel)]="employee.gender" #gender="ngModel">
+                        <input type="radio" required name="gender" value="female" [(ngModel)]="employee.gender"
+                            #gender="ngModel">
                         Female
                     </label>
                 </div>
@@ -86,10 +87,24 @@
                 </span>
             </div>
 
+            <!-- confusing user interface -->
+            <!-- <div class="form-group" [class.has-error]="isActive.touched && isActive.invalid">
+                <div class="form-control">
+                    <label class="checkbox-inline control-label">
+                        <input type="checkbox" [required]="employee.isActive==null" name="isActive" [(ngModel)]="employee.isActive"
+                            #isActive="ngModel">Is Active
+                    </label>
+                </div>
+                <span class="help-block" *ngIf="isActive.touched && isActive.errors?.required">
+                    Is Active is required
+                </span>
+            </div> -->
+
             <div class="form-group">
                 <div class="form-control">
                     <label class="checkbox-inline">
-                        <input type="checkbox" name="isActive" [(ngModel)]="employee.isActive">Is Active
+                        <input type="checkbox" name="isActive" [(ngModel)]="employee.isActive"
+                            #isActive="ngModel">Is Active
                     </label>
                 </div>
             </div>
