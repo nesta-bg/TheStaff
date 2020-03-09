@@ -113,7 +113,11 @@
                 <label for="department" class="control-label">Department</label>
                 <select id="department" required name="department" class="form-control"
                     [(ngModel)]="employee.department" #department="ngModel">
-                    <option value="-1">Select Department</option> 
+                    <!-- <option value="-1">Select Department</option> -->
+                    <!-- If the option value is a simple string we use the value property,
+                    on the other hand, if the option value is null or an object use ngValue property.  -->
+                    <!-- <option disabled [ngValue]="null">Select Department</option> -->
+                    <option [ngValue]="null">Select Department</option>    
                     <option *ngFor="let dept of departments" [value]="dept.id">
                         {{dept.name}}
                     </option>
