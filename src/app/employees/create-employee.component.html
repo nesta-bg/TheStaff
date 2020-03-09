@@ -113,9 +113,9 @@
                 <label for="department" class="control-label">Department</label>
                  <!-- Required works only if the default value is null,
                     if it is not the case we have to create custom validator.  -->
-                <select id="department" appSelectValidator name="department" class="form-control"
+                <select id="department" appSelectValidator="select" name="department" class="form-control"
                     [(ngModel)]="employee.department" #department="ngModel">
-                    <option ngValue="-1">Select Department</option>
+                    <option ngValue="select">Select Department</option>
                     Required works only if the default value is null 
                     <option *ngFor="let dept of departments" [value]="dept.id">
                         {{dept.name}}
