@@ -111,18 +111,17 @@
 
             <div class="form-group" [class.has-error]="department.touched && department.invalid">
                 <label for="department" class="control-label">Department</label>
-                <select id="department" required name="department" class="form-control"
+                 <!-- Required works only if the default value is null,
+                    if it is not the case we have to create custom validator.  -->
+                <select id="department" appSelectValidator name="department" class="form-control"
                     [(ngModel)]="employee.department" #department="ngModel">
-                    <!-- <option value="-1">Select Department</option> -->
-                    <!-- If the option value is a simple string we use the value property,
-                    on the other hand, if the option value is null or an object use ngValue property.  -->
-                    <!-- <option disabled [ngValue]="null">Select Department</option> -->
-                    <option [ngValue]="null">Select Department</option>    
+                    <option ngValue="-1">Select Department</option>
+                    Required works only if the default value is null 
                     <option *ngFor="let dept of departments" [value]="dept.id">
                         {{dept.name}}
                     </option>
                 </select>
-                <span class="help-block" *ngIf="department.touched && department.invalid">
+                <span class="help-block" *ngIf="department.touched && department.errors?.defaultSelected">
                     Department is required
                 </span>
             </div>
