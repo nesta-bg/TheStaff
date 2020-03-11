@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from '../models/employee.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-display-employee',
@@ -8,10 +9,13 @@ import { Employee } from '../models/employee.model';
 })
 export class DisplayEmployeeComponent implements OnInit {
  @Input() employee: Employee;
+  private selectedEmployeeId: number;
 
-  constructor() { }
+  // tslint:disable-next-line: variable-name
+  constructor(private _route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.selectedEmployeeId = +this._route.snapshot.paramMap.get('id');
   }
 
 }
