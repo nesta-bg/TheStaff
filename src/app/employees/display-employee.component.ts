@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Employee } from '../models/employee.model';
 
 @Component({
@@ -6,20 +6,26 @@ import { Employee } from '../models/employee.model';
   templateUrl: './display-employee.component.html',
   styleUrls: ['./display-employee.component.css']
 })
-export class DisplayEmployeeComponent implements OnInit, OnChanges {
-  @Input() employee: Employee;
+export class DisplayEmployeeComponent implements OnInit {
+  // tslint:disable-next-line: variable-name
+  private _employee: Employee;
+
+  // This property setter is called anytime the input property changes
+  @Input()
+  set employee(val: Employee) {
+    console.log('Previous : ' + (this._employee ? this._employee.name : 'NULL'));
+    console.log('Current : ' + val.name);
+    this._employee = val;
+  }
+
+  // This getter is called when reading and displaying data
+  get employee(): Employee {
+    return this._employee;
+  }
 
   constructor() { }
 
   ngOnInit() {
-  }
-
-  ngOnChanges(changes: SimpleChanges) {
-    const previousEmployee = changes.employee.previousValue as Employee;
-    const currentEmployee = changes.employee.currentValue as Employee;
-
-    console.log('Previous : ' + (previousEmployee ? previousEmployee.name : 'NULL') );
-    console.log('Current : ' + currentEmployee.name);
   }
 
 }
