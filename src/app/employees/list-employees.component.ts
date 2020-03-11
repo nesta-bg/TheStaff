@@ -8,17 +8,12 @@ import { EmployeeService } from './employee.service';
 })
 export class ListEmployeesComponent implements OnInit {
   employees: Employee[];
-  dataFromChild: string;
 
   // tslint:disable-next-line: variable-name
   constructor(private _employeeService: EmployeeService) { }
 
   ngOnInit() {
     this.employees = this._employeeService.getEmployees();
-  }
-
-  handleNotify(eventData: string) {
-    this.dataFromChild = eventData;
   }
 
 }
