@@ -58,12 +58,9 @@ export class CreateEmployeeComponent implements OnInit {
 
   // Third Way
   saveEmployee(): void {
-    this._employeeService.save(this.employee);
+    const newEmployee: Employee = Object.assign({}, this.employee);
+    this._employeeService.save(newEmployee);
     this.createEmployeeForm.reset();
-    // this.createEmployeeForm.reset({
-    //   name: 'TestName',
-    //   contactPreference: 'phone'
-    // });
     this._router.navigate(['list']);
   }
 
