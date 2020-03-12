@@ -38,4 +38,8 @@ export class ListEmployeesComponent implements OnInit {
     this.employees[0].name = 'Jordan';
   }
 
+  onMouseMove() {
+
+  }
+
 }
