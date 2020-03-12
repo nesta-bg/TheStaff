@@ -49,8 +49,21 @@ export class CreateEmployeeComponent implements OnInit {
   ngOnInit() {
   }
 
+  //  Second Way
+  // saveEmployee(empForm: NgForm): void {
+  //   this._employeeService.save(this.employee);
+  //   empForm.reset();
+  //   this._router.navigate(['list']);
+  // }
+
+  // Third Way
   saveEmployee(): void {
     this._employeeService.save(this.employee);
+    this.createEmployeeForm.reset();
+    // this.createEmployeeForm.reset({
+    //   name: 'TestName',
+    //   contactPreference: 'phone'
+    // });
     this._router.navigate(['list']);
   }
 
