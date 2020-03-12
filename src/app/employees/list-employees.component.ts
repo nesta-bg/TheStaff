@@ -9,12 +9,33 @@ import { Router } from '@angular/router';
 })
 export class ListEmployeesComponent implements OnInit {
   employees: Employee[];
-  searchTerm: string;
+  filteredEmployees: Employee[];
+  // tslint:disable-next-line: variable-name
+  private _searchTerm: string;
+
+ // We are binding to this property in the view template, so this
+  // getter is called when the binding needs to read the value
+  get searchTerm(): string {
+    return this._searchTerm;
+  }
+
+  // This setter is called everytime the value in the search text box changes
+  set searchTerm(value: string) {
+    this._searchTerm = value;
+    this.filteredEmployees = this.filterEmployees(value);
+  }
+
+  filterEmployees(searchString: string) {
+    return this.employees.filter(employee =>
+      employee.name.toLowerCase().indexOf(searchString.toLowerCase()) !== -1);
+  }
+
   // tslint:disable-next-line: variable-name
   constructor(private _employeeService: EmployeeService, private _router: Router) { }
 
   ngOnInit() {
     this.employees = this._employeeService.getEmployees();
+    this.filteredEmployees = this.employees;
   }
 
   onClick(employeeId: number) {
@@ -36,6 +57,7 @@ export class ListEmployeesComponent implements OnInit {
   // type J in the search box and then click on the button Change Employee Name
   changeEmployeeName() {
     this.employees[0].name = 'Jordan';
+    this.filteredEmployees = this.filterEmployees(this.searchTerm);
   }
 
   onMouseMove() {
