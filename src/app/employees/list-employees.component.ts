@@ -21,4 +21,21 @@ export class ListEmployeesComponent implements OnInit {
     this._router.navigate(['/employees', employeeId]);
   }
 
+  // click on the button Change Employee Name
+  // changeEmployeeName() {
+  //   this.employees[0].name = 'Jordan';
+  // }
+
+  // type J in the search box and then click on the button Change Employee Name
+  // changeEmployeeName() {
+  //   const newEmployeeArray: Employee[] = Object.assign([], this.employees);
+  //   newEmployeeArray[0].name = 'Jordan';
+  //   this.employees = newEmployeeArray;
+  // }
+
+  // type J in the search box and then click on the button Change Employee Name
+  changeEmployeeName() {
+    this.employees[0].name = 'Jordan';
+  }
+
 }
