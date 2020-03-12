@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class ListEmployeesComponent implements OnInit {
   employees: Employee[];
-
+  searchTerm: string;
   // tslint:disable-next-line: variable-name
   constructor(private _employeeService: EmployeeService, private _router: Router) { }
 
