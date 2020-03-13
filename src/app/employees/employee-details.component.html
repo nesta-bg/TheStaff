@@ -76,10 +76,11 @@
             </div>
         </div>
     </div>
+    <!-- queryParamsHandling="preserve">Back to List -->
     <div class="panel-footer">
         <!-- <a class="btn btn-primary" [routerLink]="['/list', {id:employee.id, name:employee.name}]"> -->
-        <a class="btn btn-primary" [routerLink]="['/list', {id:employee.id}]">
-            Back to List
+        <a class="btn btn-primary" [routerLink]="['/list', {id:employee.id}]"
+            [queryParams]="{'newParam': 'newValue'}" queryParamsHandling="merge">Back to List
         </a>
         <button class="btn btn-primary pull-right" (click)="getNextEmployee()">
             View Next Employee
