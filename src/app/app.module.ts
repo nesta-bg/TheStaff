@@ -44,7 +44,7 @@ const appRoutes: Routes = [
     FormsModule,
     BsDatepickerModule.forRoot(),
     BrowserAnimationsModule,
-    RouterModule.forRoot(appRoutes)
+    RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   providers: [ EmployeeService, CreateEmployeeCanDeactivateGuardService, EmployeeListResolverService ],
   bootstrap: [AppComponent]
