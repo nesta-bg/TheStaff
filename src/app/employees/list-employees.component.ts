@@ -34,7 +34,18 @@ export class ListEmployeesComponent implements OnInit {
   constructor(private _employeeService: EmployeeService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit() {
-    this.employees = this._employeeService.getEmployees();
+    this._employeeService.getEmployees().subscribe((empList) => {
+      this.employees = empList;
+
+      this._route.queryParamMap.subscribe((queryParams) => {
+        if (queryParams.has('searchTerm')) {
+          this.searchTerm = queryParams.get('searchTerm');
+        } else {
+          this.filteredEmployees = this.employees;
+        }
+      });
+    });
+
     // console.log(this._route.snapshot.queryParamMap.has('searchTerm'));
     // console.log(this._route.snapshot.queryParamMap.get('searchTerm'));
     // console.log(this._route.snapshot.queryParamMap.getAll('searchTerm'));
@@ -50,13 +61,15 @@ export class ListEmployeesComponent implements OnInit {
     // }
 
     // Observable Approach
-    this._route.queryParamMap.subscribe((queryParams) => {
-      if (queryParams.has('searchTerm')) {
-        this.searchTerm = queryParams.get('searchTerm');
-      } else {
-        this.filteredEmployees = this.employees;
-      }
-    });
+    // this._route.queryParamMap.subscribe((queryParams) => {
+    //   if (queryParams.has('searchTerm')) {
+    //     this.searchTerm = queryParams.get('searchTerm');
+    //   } else {
+    //     this.filteredEmployees = this.employees;
+    //     console.log(this.employees.length);
+    //     console.log('Else Block : ' + new Date().toTimeString());
+    //   }
+    // });
   }
 
   onClick(employeeId: number) {
