@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { EmployeeService } from './employee.service';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   templateUrl: './list-employees.component.html',
@@ -31,11 +31,32 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   // tslint:disable-next-line: variable-name
-  constructor(private _employeeService: EmployeeService, private _router: Router) { }
+  constructor(private _employeeService: EmployeeService, private _router: Router, private _route: ActivatedRoute) { }
 
   ngOnInit() {
     this.employees = this._employeeService.getEmployees();
-    this.filteredEmployees = this.employees;
+    // console.log(this._route.snapshot.queryParamMap.has('searchTerm'));
+    // console.log(this._route.snapshot.queryParamMap.get('searchTerm'));
+    // console.log(this._route.snapshot.queryParamMap.getAll('searchTerm'));
+    // console.log(this._route.snapshot.queryParamMap.keys);
+    // // for required and optional
+    // console.log(this._route.snapshot.paramMap.keys);
+
+    // // Snapshot Approach
+    // if (this._route.snapshot.queryParamMap.has('searchTerm')) {
+    //   this.searchTerm = this._route.snapshot.queryParamMap.get('searchTerm');
+    // } else {
+    //   this.filteredEmployees = this.employees;
+    // }
+
+    // Observable Approach
+    this._route.queryParamMap.subscribe((queryParams) => {
+      if (queryParams.has('searchTerm')) {
+        this.searchTerm = queryParams.get('searchTerm');
+      } else {
+        this.filteredEmployees = this.employees;
+      }
+    });
   }
 
   onClick(employeeId: number) {
