@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
-import { EmployeeService } from './employee.service';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -31,21 +30,19 @@ export class ListEmployeesComponent implements OnInit {
   }
 
   // tslint:disable-next-line: variable-name
-  constructor(private _employeeService: EmployeeService, private _router: Router, private _route: ActivatedRoute) { }
+  constructor( private _router: Router, private _route: ActivatedRoute) {
+    this.employees = this._route.snapshot.data.employeeList;
+
+    this._route.queryParamMap.subscribe((queryParams) => {
+      if (queryParams.has('searchTerm')) {
+        this.searchTerm = queryParams.get('searchTerm');
+      } else {
+        this.filteredEmployees = this.employees;
+      }
+    });
+  }
 
   ngOnInit() {
-    this._employeeService.getEmployees().subscribe((empList) => {
-      this.employees = empList;
-
-      this._route.queryParamMap.subscribe((queryParams) => {
-        if (queryParams.has('searchTerm')) {
-          this.searchTerm = queryParams.get('searchTerm');
-        } else {
-          this.filteredEmployees = this.employees;
-        }
-      });
-    });
-
     // console.log(this._route.snapshot.queryParamMap.has('searchTerm'));
     // console.log(this._route.snapshot.queryParamMap.get('searchTerm'));
     // console.log(this._route.snapshot.queryParamMap.getAll('searchTerm'));
