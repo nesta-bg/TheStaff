@@ -24,7 +24,7 @@ const appRoutes: Routes = [
     component: ListEmployeesComponent,
     resolve: { employeeList: EmployeeListResolverService }
   },
-  { path: 'create',
+  { path: 'edit/:id',
     component: CreateEmployeeComponent,
     canDeactivate: [CreateEmployeeCanDeactivateGuardService]
   },
