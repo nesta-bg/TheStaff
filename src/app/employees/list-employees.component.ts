@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ResolvedEmployeeList } from './resolved-employeeList.model';
 
 @Component({
   templateUrl: './list-employees.component.html',
@@ -11,6 +12,7 @@ export class ListEmployeesComponent implements OnInit {
   filteredEmployees: Employee[];
   // tslint:disable-next-line: variable-name
   private _searchTerm: string;
+  error: string;
 
  // We are binding to this property in the view template, so this
   // getter is called when the binding needs to read the value
@@ -31,7 +33,13 @@ export class ListEmployeesComponent implements OnInit {
 
   // tslint:disable-next-line: variable-name
   constructor( private _router: Router, private _route: ActivatedRoute) {
-    this.employees = this._route.snapshot.data.employeeList;
+    const resolvedEmployeeList: ResolvedEmployeeList = this._route.snapshot.data.employeeList;
+
+    if (resolvedEmployeeList.error == null) {
+      this.employees = resolvedEmployeeList.employeeList;
+    } else {
+      this.error = resolvedEmployeeList.error;
+    }
 
     this._route.queryParamMap.subscribe((queryParams) => {
       if (queryParams.has('searchTerm')) {
