@@ -2,11 +2,17 @@
     width:200px;
     height:200px;
 }
+
 .vertical-align{
     display: flex;
     align-items: center;
 }
+
 button.btn {
     width: 70px;
     margin-left: 2px;
+}
+
+.pointerCursor {
+    cursor: pointer;
 }
