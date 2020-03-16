@@ -10,6 +10,8 @@ export class EmployeeListResolverService implements Resolve<Employee[]> {
     constructor(private _employeeService: EmployeeService) {
     }
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Employee[]> {
+        // If the observable service is being consumed by a Resolver,
+        // the resolver service will subscribe to the Observable, we do not have to explicitly subscribe.
         return this._employeeService.getEmployees();
     }
 }
