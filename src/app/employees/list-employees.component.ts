@@ -33,12 +33,12 @@ export class ListEmployeesComponent implements OnInit {
 
   // tslint:disable-next-line: variable-name
   constructor( private _router: Router, private _route: ActivatedRoute) {
-    const resolvedEmployeeList: ResolvedEmployeeList = this._route.snapshot.data.employeeList;
+    const resolvedData: Employee[] | string = this._route.snapshot.data.employeeList;
 
-    if (resolvedEmployeeList.error == null) {
-      this.employees = resolvedEmployeeList.employeeList;
+    if (Array.isArray(resolvedData)) {
+      this.employees = resolvedData;
     } else {
-      this.error = resolvedEmployeeList.error;
+      this.error = resolvedData;
     }
 
     this._route.queryParamMap.subscribe((queryParams) => {
