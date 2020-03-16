@@ -14,8 +14,6 @@ export class DisplayEmployeeComponent implements OnInit {
  private selectedEmployeeId: number;
  @Output() notifyDelete: EventEmitter<number> = new EventEmitter<number>();
  confirmDelete = false;
-//  panelExpanded = true;
- isHidden = false;
 
   // tslint:disable-next-line: variable-name
   constructor(private _route: ActivatedRoute, private _router: Router, private _employeeService: EmployeeService) { }
