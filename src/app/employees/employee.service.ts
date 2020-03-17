@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Employee } from '../models/employee.model';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class EmployeeService {
@@ -64,18 +64,18 @@ export class EmployeeService {
         return this.listEmployees.find(e => e.id === id);
     }
 
-    save(employee: Employee) {
+    save(employee: Employee): Observable<Employee> {
         if (employee.id === null) {
-          // tslint:disable-next-line: only-arrow-functions
-          const maxId = this.listEmployees.reduce(function(e1, e2) {
-            return (e1.id > e2.id) ? e1 : e2;
-          }).id;
-          employee.id = maxId + 1;
-
-          this.listEmployees.push(employee);
+            return this.httpClient.post<Employee>('http://localhost:3000/employees',
+                employee, {
+                headers: new HttpHeaders({
+                    'Content-Type': 'application/json'
+                })
+            })
+            .pipe(catchError(this.handleError));
         } else {
-          const foundIndex = this.listEmployees.findIndex(e => e.id === employee.id);
-          this.listEmployees[foundIndex] = employee;
+            const foundIndex = this.listEmployees.findIndex(e => e.id === employee.id);
+            this.listEmployees[foundIndex] = employee;
         }
     }
 

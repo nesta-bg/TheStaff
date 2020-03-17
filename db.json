@@ -32,6 +32,30 @@
       "department": "3",
       "isActive": false,
       "photoPath": "assets/images/john.jpg"
+    },
+    {
+      "id": 4,
+      "name": "David",
+      "gender": "Male",
+      "contactPreference": "Phone",
+      "phoneNumber": "124755",
+      "email": "david@gmail.com",
+      "dateOfBirth": "2020-03-23T09:06:51.000Z",
+      "department": "1",
+      "isActive": true,
+      "photoPath": "assets/images/mark.jpg"
+    },
+    {
+      "id": 5,
+      "name": "Bob",
+      "gender": "Male",
+      "contactPreference": "Email",
+      "phoneNumber": null,
+      "email": "bob@gmail.com",
+      "dateOfBirth": "2020-03-02T09:14:48.000Z",
+      "department": "4",
+      "isActive": true,
+      "photoPath": "assets/images/john.jpg"
     }
   ]
 }
