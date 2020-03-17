@@ -6,10 +6,11 @@
       "gender": "Male",
       "contactPreference": "Email",
       "email": "mark@pragimtech.com",
-      "dateOfBirth": "1988/10/25",
+      "dateOfBirth": "1988-02-08T23:00:00.000Z",
       "department": "3",
       "isActive": true,
-      "photoPath": "assets/images/mark.jpg"
+      "photoPath": "assets/images/mark.jpg",
+      "phoneNumber": "65758687"
     },
     {
       "id": 2,
